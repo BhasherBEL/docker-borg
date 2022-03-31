@@ -1,0 +1,16 @@
+version: '3'
+services:
+  borg:
+    image: bhasher/borg:latest
+    container_name: borg
+    environment:
+      - BORG_REPO=/borg/repo
+      - BACKUP_DIRS=/borg/data
+      - BORG_PASSPHRASE=very-secure-password
+      - PRUNE=1
+      - KEEP_DAILY=7
+      - KEEP_WEEKLY=4
+      - KEEP_MONTHLY=12
+    volumes:
+      - my-backup-repo:/borg/repo:rw
+      - /home:/borg/data:ro
